@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        style="@style/IconFabColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/new_chat"
+
+        app:srcCompat="@drawable/ic_chat_white_24dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#101D25"
+        tools:context=".MainActivity">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#232D36"
+            app:layout_constraintEnd_toStartOf="@id/tlMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIconTint="@color/text_color"
+            app:tabIndicatorColor="#0000897B"
+            app:tabSelectedTextColor="#0000897B"
+            app:tabTextAppearance="@style/CustomViewAllTab"
+            app:tabTextColor="#989696"
+            app:tabGravity="fill"
+
+            app:tabMaxWidth="0dp"
+            app:tabIndicatorFullWidth="false"
+            >
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_photo_camera_white_24dp" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#232D36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tlMedia"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIconTint="@color/text_color"
+            app:tabIndicatorColor="#00B19F"
+            app:tabSelectedTextColor="#00B19F"
+            app:tabTextAppearance="@style/CustomViewAllTab"
+            app:tabTextColor="#989696">
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/conversation_tab"
+                style="@style/CustomViewAllTab"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_tab"
+                style="@style/CustomViewAllTab"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calls_tab" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tlMain" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

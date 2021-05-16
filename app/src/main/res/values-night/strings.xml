@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">WhatsApp</string>
+    <string name="conversation_tab">Conversas</string>
+    <string name="status_tab">Status</string>
+    <string name="calls_tab">Chamadas</string>
     <string name="new_chat">Começar nova conversa</string>
+    <string name="main_text">Leia nossa Política de Privacidade. Toque em CONCORDAR E CONTINUAR para aceitar os <a href="https://www.whatsapp.com/legal/terms-of-service?lg=pt&amp;lc=BR&amp;eea=0">Termos de Serviço</a>.</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.lfelipe.whatsapp
+package com.lfelipe.whatsapp.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

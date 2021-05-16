@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.activities.MainActivity">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#101D25"
-        tools:context=".MainActivity">
+        tools:context=".view.activities.MainActivity">
 
 
         <com.google.android.material.tabs.TabLayout

@@ -6,4 +6,7 @@
     <string name="calls_tab">Chamadas</string>
     <string name="new_chat">Começar nova conversa</string>
     <string name="main_text">Leia nossa Política de Privacidade. Toque em CONCORDAR E CONTINUAR para aceitar os <a href="https://www.whatsapp.com/legal/terms-of-service?lg=pt&amp;lc=BR&amp;eea=0">Termos de Serviço</a>.</string>
+    <string name="main_text_phone_activity">O WhatsApp enviará uma mensagem SMS para confirmar seu número de telefone. Qual é meu número?</string>
+    <string name="sms_tax_msg">Sujeito a cobranças de tarifas de SMS de sua operadora</string>
+    <string name="continue_button_phone_register">avançar</string>
 </resources>

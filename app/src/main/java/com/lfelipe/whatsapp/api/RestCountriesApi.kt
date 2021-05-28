@@ -7,9 +7,12 @@ import retrofit2.http.Path
 
 interface RestCountriesApi {
 
-    @GET("{callingcode}")
+    @GET("callingcode/{callingcode}")
     fun getCountry(
         @Path("callingcode") code: String
     ): Observable<Country>
+
+    @GET("all")
+    fun getAllCountries() : Observable<Country>
 
 }

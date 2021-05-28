@@ -11,4 +11,11 @@ class CountriesRepository {
         return ApiService.api.getCountry(code)
 
     }
+
+    fun getCountries(): Observable<Country> {
+
+        return ApiService.api.getAllCountries()
+
+    }
+
 }

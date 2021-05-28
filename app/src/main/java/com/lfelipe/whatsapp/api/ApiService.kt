@@ -12,7 +12,7 @@ object ApiService {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl("https://restcountries.eu/rest/v2/callingcode/")
+            .baseUrl("https://restcountries.eu/rest/v2/")
             .build()
     }
 

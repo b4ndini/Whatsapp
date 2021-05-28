@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:contentDescription="@string/search_button_toolbar"
+        app:showAsAction="ifRoom"
+        android:theme="@style/ToolbarColoredBackArrow"
+        android:title="@string/search_button_title_toolbar" />
+
+
+
+</menu>

@@ -9,4 +9,7 @@
     <string name="main_text_phone_activity">O WhatsApp enviará uma mensagem SMS para confirmar seu número de telefone. Qual é meu número?</string>
     <string name="sms_tax_msg">Sujeito a cobranças de tarifas de SMS de sua operadora</string>
     <string name="continue_button_phone_register">avançar</string>
+    <string name="search_button_toolbar">botão de busca</string>
+    <string name="back_button_toolbar">botão de retornar para tela anterior</string>
+    <string name="search_button_title_toolbar">Pesquisar países</string>
 </resources>

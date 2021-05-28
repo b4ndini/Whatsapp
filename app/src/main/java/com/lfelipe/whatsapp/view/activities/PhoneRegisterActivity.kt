@@ -1,22 +1,24 @@
 package com.lfelipe.whatsapp.view.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lfelipe.whatsapp.R
 import com.lfelipe.whatsapp.databinding.ActivityPhoneRegisterBinding
 import com.lfelipe.whatsapp.viewmodel.PhoneRegisterViewModel
 
+
 class PhoneRegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPhoneRegisterBinding
     private lateinit var viewModel: PhoneRegisterViewModel
     private lateinit var phoneFormatting: PhoneNumberFormattingTextWatcher
+    private val SECOND_ACTIVITY_REQUEST_CODE = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,33 @@ class PhoneRegisterActivity : AppCompatActivity() {
         observes()
         ddiListener()
 
+        binding.dropDownText.setOnClickListener {
+            val intent = Intent(this, CountriesActivity::class.java)
+            startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
+        }
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                val countryName: String? = intent?.getStringExtra("country")
+                val ddi: String? = intent?.getStringExtra("ddi_code")
+                val countryCode: String? = intent?.getStringExtra("country_code")
+
+                binding.etNumberEdit.removeTextChangedListener(phoneFormatting)
+                phoneFormatting = PhoneNumberFormattingTextWatcher(countryCode ?: "BR")
+                binding.etNumberEdit.addTextChangedListener(
+                    phoneFormatting
+                )
+                binding.etDdiEdit.text = Editable.Factory.getInstance().newEditable(ddi ?: "55")
+                binding.dropDownText.text = Editable.Factory.getInstance().newEditable(countryName ?: "Brasil")
+            }
+        }
 
     }
 
@@ -114,13 +143,13 @@ class PhoneRegisterActivity : AppCompatActivity() {
             ddi = binding.etDdiEdit.text.toString()
             phoneNumber = binding.etNumberEdit.text.toString()
 
-
+            //to do validacao
             if (phoneNumber.length < 12 || phoneNumber.length > 15) {
                 MaterialAlertDialogBuilder(
                     this,
                     R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
-                    .setMessage("+$ddi $phoneNumber \nnão é um número válido para o país Brasil")
+                    .setMessage("+$ddi $phoneNumber \nnão é um número válido para o país Brasil.")
                     .setPositiveButton("Ok") { dialog, which ->
                         closeContextMenu()
                     }
@@ -130,7 +159,7 @@ class PhoneRegisterActivity : AppCompatActivity() {
                     this,
                     R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog
                 )
-                    .setMessage("Nós confirmaremos o número: + $ddi $phoneNumber Este número está correto ou deseja editá-lo?")
+                    .setMessage("Nós confirmaremos o número:\n\n+$ddi $phoneNumber \n\nEste número está correto ou deseja editá-lo?")
                     .setNegativeButton("Editar") { dialog, which ->
                         closeContextMenu()
                     }

@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="Theme.WhatsApp.NoActionBar">
@@ -19,7 +20,6 @@
         <item name="windowNoTitle">true</item>
         <item name="colorSecondary">#039BE5</item>
     </style>
-
 
 
     <style name="CustomViewAllTab" parent="@style/TextAppearance.MaterialComponents.Button">
@@ -62,6 +62,31 @@
     <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">#00B19F</item>
 
+    </style>
+
+    <style name="Theme.WhatsApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.WhatsApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Toolbar -->
+    <style name="Theme.App" parent="Theme.WhatsApp.NoActionBar">
+        ...
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
+    </style>
+
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar" parent="">
+        <item name="colorPrimary">@color/teal_700</item>
+        <item name="colorPrimaryVariant">@color/teal_700</item>
+        <item name="colorOnPrimary">@color/teal_700</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrow" parent="Widget.App.Toolbar">
+        <item name="android:textColorSecondary">@color/teal_700</item>
     </style>
 
 </resources>

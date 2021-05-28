@@ -11,9 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsApp">
-        <activity android:name=".view.activities.PhoneRegisterActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.WhatsApp.NoActionBar"/>
+        <activity
+            android:name=".view.activities.MainActivity"
+            android:theme="@style/Theme.WhatsApp.NoActionBar" />
+        <activity android:name=".view.activities.CountriesActivity"
+            android:theme="@style/Theme.WhatsApp.NoActionBar" />
+        <activity
+            android:name=".view.activities.PhoneRegisterActivity"
+            android:theme="@style/Theme.WhatsApp.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.activities.WelcomeActivity"
             android:theme="@style/Theme.WhatsApp.NoActionBar">
@@ -23,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.MainActivity" />
     </application>
 
 </manifest>

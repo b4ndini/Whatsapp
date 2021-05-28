@@ -9,14 +9,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class CountriesViewModel : ViewModel() {
+class CountriesViewModel(private val repository: CountriesRepository) : ViewModel() {
 
     private lateinit var disposable: Disposable
     var countryLiveData: MutableLiveData<Country> = MutableLiveData()
     var errorMsgLiveData: MutableLiveData<String> = MutableLiveData()
-    private val repository by lazy {
-        CountriesRepository()
-    }
 
     fun getCountries(){
         repository.getCountries()

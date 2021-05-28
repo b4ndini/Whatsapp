@@ -64,6 +64,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     //Biblioteca para dar suporte à imagens no formato SVG usando Glide
     implementation 'com.github.corouteam:GlideToVectorYou:2.0.0'
+    //Koin - Dependency Injection
+    implementation "org.koin:koin-android:2.2.2"
+    implementation "org.koin:koin-androidx-scope:2.2.2"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
 
 
 }

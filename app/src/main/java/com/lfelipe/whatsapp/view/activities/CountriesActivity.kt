@@ -5,19 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lfelipe.whatsapp.R
 import com.lfelipe.whatsapp.databinding.ActivityCountriesBinding
 import com.lfelipe.whatsapp.view.adapter.CountriesAdapter
 import com.lfelipe.whatsapp.viewmodel.CountriesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CountriesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountriesBinding
-    private lateinit var viewModel: CountriesViewModel
+    private val viewModel: CountriesViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +24,7 @@ class CountriesActivity : AppCompatActivity() {
         binding = ActivityCountriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(CountriesViewModel::class.java)
+
 
         binding.topAppBar.setNavigationOnClickListener {
             finish()

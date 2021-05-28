@@ -6,17 +6,17 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lfelipe.whatsapp.R
 import com.lfelipe.whatsapp.databinding.ActivityPhoneRegisterBinding
 import com.lfelipe.whatsapp.viewmodel.PhoneRegisterViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class PhoneRegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPhoneRegisterBinding
-    private lateinit var viewModel: PhoneRegisterViewModel
+    private val viewModel: PhoneRegisterViewModel by viewModel()
     private lateinit var phoneFormatting: PhoneNumberFormattingTextWatcher
     private val SECOND_ACTIVITY_REQUEST_CODE = 0
 
@@ -25,7 +25,6 @@ class PhoneRegisterActivity : AppCompatActivity() {
         binding = ActivityPhoneRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel =  ViewModelProvider(this).get(PhoneRegisterViewModel::class.java)
 
         signUp()
         observes()

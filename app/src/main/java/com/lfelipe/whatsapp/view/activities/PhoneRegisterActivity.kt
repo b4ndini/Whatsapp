@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.lfelipe.whatsapp.R
@@ -29,6 +30,7 @@ class PhoneRegisterActivity : AppCompatActivity() {
         signUp()
         observes()
         ddiListener()
+
 
         binding.dropDownText.setOnClickListener {
             val intent = Intent(this, CountriesActivity::class.java)
@@ -163,7 +165,10 @@ class PhoneRegisterActivity : AppCompatActivity() {
                         closeContextMenu()
                     }
                     .setPositiveButton("Ok") { dialog, which ->
-                        val intent = Intent(this, MainActivity::class.java)
+                        val phone = binding.etNumberEdit.text.toString().replace('-', ' ')
+                        val completePhoneNumber = "+${binding.etDdiEdit.text.toString()}  $phone"
+                        val intent = Intent(this, SmsVerificationActivity::class.java)
+                        intent.putExtra("phone_number", completePhoneNumber)
                         startActivity(intent)
                     }
                     .show()

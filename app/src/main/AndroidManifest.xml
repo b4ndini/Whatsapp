@@ -5,17 +5,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".di.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".di.Application"
         android:theme="@style/Theme.WhatsApp">
+        <activity
+            android:name=".view.activities.SmsVerificationActivity"
+            android:theme="@style/Theme.WhatsApp.NoActionBar"/>
         <activity
             android:name=".view.activities.MainActivity"
             android:theme="@style/Theme.WhatsApp.NoActionBar" />
-        <activity android:name=".view.activities.CountriesActivity"
+        <activity
+            android:name=".view.activities.CountriesActivity"
             android:theme="@style/Theme.WhatsApp.NoActionBar" />
         <activity
             android:name=".view.activities.PhoneRegisterActivity"

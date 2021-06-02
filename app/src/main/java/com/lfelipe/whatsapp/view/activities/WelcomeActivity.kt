@@ -11,18 +11,24 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.lfelipe.whatsapp.databinding.ActivityWelcomeBinding
 
 
 class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWelcomeBinding
+    private val firebaseAuth by lazy{
+        Firebase.auth
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkLogin()
         binding.btnAgree.setOnClickListener {
             val intent = Intent(this, PhoneRegisterActivity::class.java)
             startActivity(intent)
@@ -31,6 +37,14 @@ class WelcomeActivity : AppCompatActivity() {
 
         settingLinks()
 
+    }
+
+    private fun checkLogin() {
+       if(firebaseAuth.currentUser != null){
+           val intent = Intent(this, MainActivity::class.java)
+           startActivity(intent)
+           finish()
+       }
     }
 
 
@@ -68,6 +82,7 @@ class WelcomeActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

@@ -98,10 +98,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:hint="seu número"
         android:textAlignment="textStart"
         app:boxBackgroundColor="@color/white"
         app:boxStrokeColor="#128C7E"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="@id/dropDownMenu"
         app:layout_constraintStart_toEndOf="@+id/tilDDI"
         app:layout_constraintTop_toBottomOf="@id/dropDownMenu">
@@ -109,6 +109,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNumberEdit"
             android:maxLength="16"
+            android:hint="seu número"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone" />

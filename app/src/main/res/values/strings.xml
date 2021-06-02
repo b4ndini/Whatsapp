@@ -12,4 +12,7 @@
     <string name="search_button_toolbar">botão de busca</string>
     <string name="back_button_toolbar">botão de retornar para tela anterior</string>
     <string name="search_button_title_toolbar">Pesquisar países</string>
+    <string name="confirm_number_sms">Confirmar %1$s</string>
+    <string name="sms_msg_confirmation">Enviamos um código SMS para <b> %1$s </b>. Número errado?</string>
+    <string name="insert_sms_numbers">Insira o código de 6 dígitos</string>
 </resources>

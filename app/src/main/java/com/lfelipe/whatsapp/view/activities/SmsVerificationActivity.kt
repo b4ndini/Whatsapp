@@ -1,6 +1,5 @@
 package com.lfelipe.whatsapp.view.activities
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,17 +14,21 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lfelipe.whatsapp.R
 import com.lfelipe.whatsapp.databinding.ActivitySmsVerificationBinding
+import com.lfelipe.whatsapp.viewmodel.PhoneRegisterViewModel
+import com.lfelipe.whatsapp.viewmodel.SmsViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
 class SmsVerificationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySmsVerificationBinding
+    //private var noInstantVerification = true
+    private val viewModel: SmsViewModel by viewModel()
     private val firebaseAuth by lazy{
         Firebase.auth
     }
     private var storedVerificationId: String? = ""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
 
@@ -35,31 +38,37 @@ class SmsVerificationActivity : AppCompatActivity() {
         binding = ActivitySmsVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        smsFieldListener()
         val num = intent.getStringExtra("phone_number")
 
-        val text = resources.getString(R.string.sms_msg_confirmation, num)
-        val text2 = resources.getString(R.string.confirm_number_sms, num)
-        binding.textView2.text = text
-        binding.textView.text = text2
+        smsEditTextListener()
+        observes()
+        setupSmsCodeService(num)
+
+
+        val sentSmsText = resources.getString(R.string.sms_msg_confirmation, num)
+        val confirmText = resources.getString(R.string.confirm_number_sms, num)
+        binding.tvConfirmPhone.text = confirmText
+        binding.tvSentSms.text = sentSmsText
+
+
+
+
+
+    }
+
+    //service to send sms code
+    private fun setupSmsCodeService(num: String?) {
 
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                // This callback will be invoked in two situations:
-                // 1 - Instant verification. In some cases the phone number can be instantly
-                //     verified without needing to send or enter a verification code.
-                // 2 - Auto-retrieval. On some devices Google Play services can automatically
-                //     detect the incoming verification SMS and perform verification without
-                //     user action.
-                Log.d("firebasee", "onVerificationCompleted:$credential")
-                signInWithPhoneAuthCredential(credential)
+
+
+                //binding.etInputSms.text =  Editable.Factory.getInstance().newEditable(credential.smsCode)
+                viewModel.signInWithPhoneAuthCredential(credential)
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                // This callback is invoked in an invalid request for verification is made,
-                // for instance if the the phone number format is not valid.
-                Log.w("firebase", "onVerificationFailed" + e.localizedMessage, e)
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
@@ -73,12 +82,7 @@ class SmsVerificationActivity : AppCompatActivity() {
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
-                // The SMS verification code has been sent to the provided phone number, we
-                // now need to ask the user to enter the code and then construct a credential
-                // by combining the code with a verification ID.
-                //Log.d(TAG, "onCodeSent:$verificationId")
 
-                // Save verification ID and resending token so we can use them later
                 storedVerificationId = verificationId
                 resendToken = token
             }
@@ -97,33 +101,33 @@ class SmsVerificationActivity : AppCompatActivity() {
 
         }
 
-        if (options != null) {
-            PhoneAuthProvider.verifyPhoneNumber(options)
-        }
-
+        if (options != null) PhoneAuthProvider.verifyPhoneNumber(options)
 
     }
 
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = task.result?.user
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
 
-                } else {
-                    // Sign in failed, display a message and update the UI
-                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(this,"Código inválido!" , Toast.LENGTH_LONG).show()
-                    }
-                    // Update UI
-                }
+    private fun observes() {
+        viewModel.signIn.observe(this,{
+        it?.let{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
+
+
+        })
+
+        viewModel.invalidCredential.observe(this,{
+            it?.let{
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            }
+
+        })
+
     }
 
-    private fun smsFieldListener() {
+
+
+    private fun smsEditTextListener() {
         binding.etInputSms.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -146,7 +150,7 @@ class SmsVerificationActivity : AppCompatActivity() {
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String){
         val credential = PhoneAuthProvider.getCredential(verificationId ?: "empty", code)
-        signInWithPhoneAuthCredential(credential)
+        viewModel.signInWithPhoneAuthCredential(credential)
 
     }
 

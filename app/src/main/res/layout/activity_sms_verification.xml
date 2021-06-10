@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvConfirmPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvSentSms"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -33,7 +33,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvConfirmPhone" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilInputSms"
@@ -43,9 +43,9 @@
         app:boxBackgroundColor="@color/white"
         app:boxStrokeColor="@color/teal_700"
         app:hintEnabled="false"
-        app:layout_constraintEnd_toEndOf="@id/textView3"
-        app:layout_constraintStart_toStartOf="@id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@id/tvInsertCode"
+        app:layout_constraintStart_toStartOf="@id/tvInsertCode"
+        app:layout_constraintTop_toBottomOf="@+id/tvSentSms"
         app:placeholderTextAppearance="@style/Placeholder">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvInsertCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -79,7 +79,7 @@
         app:cardElevation="0dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/tvInsertCode">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 

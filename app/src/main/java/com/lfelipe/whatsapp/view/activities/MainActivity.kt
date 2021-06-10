@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.lfelipe.whatsapp.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
